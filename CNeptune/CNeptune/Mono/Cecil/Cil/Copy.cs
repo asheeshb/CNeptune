@@ -79,8 +79,10 @@ namespace Mono.Cecil.Cil
         private TypeReference ReplaceGenericTypes(TypeReference type)
         {
             if (type is GenericParameter) { return this.m_Genericity.TryGetValue(type as GenericParameter) ?? type; }
-            if (type is GenericInstanceType _genericType)
+            if (type is GenericInstanceType)
             {
+                GenericInstanceType _genericType = type as GenericInstanceType;
+                
                 List<TypeReference> _newArgumentTypes = null;
                 for (var _index = 0; _index < _genericType.GenericArguments.Count; _index++)
                 {
