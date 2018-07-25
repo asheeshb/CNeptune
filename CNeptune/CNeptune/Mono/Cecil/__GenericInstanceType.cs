@@ -92,8 +92,10 @@ namespace Mono.Cecil
 
         static private TypeReference ReplaceGenericTypes(MethodReference method, TypeReference type, GenericParameter[] genericParameters)
         {
-            if (type is GenericParameter _genericParameter)
+            if (type is GenericParameter)
             {
+                var _genericParameter = type as GenericParameter;
+                
                 var _index = method.GenericParameters.IndexOf(_genericParameter);
                 if (_index >= 0)
                 {
@@ -114,8 +116,10 @@ namespace Mono.Cecil
                 throw new InvalidOperationException();
             }
 
-            if (type is GenericInstanceType _genericType)
+            if (type is GenericInstanceType)
             {
+                var _genericType = type as GenericInstanceType;
+                
                 List<TypeReference> _newArgumentTypes = null;
                 for (var _index = 0; _index < _genericType.GenericArguments.Count; _index++)
                 {
